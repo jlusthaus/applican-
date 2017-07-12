@@ -56,3 +56,11 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# apikeys endpoint
+db/config.keys.js
+
+#webpack bundle
+public/bundle.js
+public.bundle.js.map
+
