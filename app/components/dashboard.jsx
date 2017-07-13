@@ -4,9 +4,9 @@ import Container from 'muicss/lib/react/container';
 import Row from 'muicss/lib/react/row';
 import Col from 'muicss/lib/react/col';
 import Panel from 'muicss/lib/react/panel';
-import JobStepper from './jobStepper';
+import JobStepper from './dashboard/jobStepper';
+import JobTable from './dashboard/jobTable';
 import { updateJobStatusAPI, deleteJobAPI, fetchUserJobs } from '../actions/actions';
-
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -41,31 +41,7 @@ class Dashboard extends Component {
         </Row>
         <Row>
           <h3>Saved Jobs</h3>
-          <table className="mui-table">
-            <thead>
-              <tr>
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-              {this.props.userJobs.filter(job => job.status < 0).map(job =>
-                (<tr key={Math.random()}>
-                  <td width={50}>
-                    <span>
-                      <button
-                        className="mui-btn mui-btn--fab mui-btn--danger mui-btn--small"
-                        onClick={() => this.props.addJobToQueue(job)}
-                      >+
-                      </button>
-                    </span>
-                  </td>
-                  <td>{job.position}</td>
-                  <td>{job.company}</td>
-                  <td>{job.updatedAt}</td>
-                </tr>))
-              }
-            </tbody>
-          </table>
+          <JobTable userJobs={this.props.userJobs} handleAddJobToQueue={this.props.addJobToQueue} />
         </Row>
         <Row>
           <h3>In Progress</h3>
@@ -110,7 +86,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(updateJobStatusAPI(job, 0));
   },
   toggleJobStatus(numString, job) {
-    const incrementer = Number(numString);
+    const incrementer = Number(numString) - 1;
     dispatch(updateJobStatusAPI(job, incrementer));
   },
   deleteJob(job) {

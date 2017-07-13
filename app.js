@@ -14,15 +14,12 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 
 // MIDDLEWARE
-app.use(bodyParser.json());
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(cookieParser);
 
 // PASSPORT SETUP
 require('./router/passport.js')(passport);
 
 app.use(Session({ secret: 'hippos', resave: true, saveUninitialized: true }));
+app.use(cookieParser);
 app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());

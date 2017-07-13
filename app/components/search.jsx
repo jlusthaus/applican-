@@ -5,10 +5,10 @@ import JobList from './jobList';
 const Search = () => (
   <div>
     <div className="mui-row">
-      <div className="mui-col-md-6 mui-col-md-offset-1">
+      <div className="mui-col-md-5 mui-col-md-offset-1">
         <JobList />
       </div>
-      <div className="mui-col-md-3">
+      <div className="mui-col-md-5">
         <JobDetails />
       </div>
     </div>

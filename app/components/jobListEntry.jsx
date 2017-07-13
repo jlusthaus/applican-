@@ -8,6 +8,7 @@ class JobListEntry extends Component {
     super(props);
 
     this.selectJobHandle = this.selectJobHandle.bind(this);
+    this.saveJob = this.saveJob.bind(this);
   }
 
   selectJobHandle(e) {
@@ -26,6 +27,22 @@ class JobListEntry extends Component {
       });
   }
 
+  saveJob(e) {
+    e.preventDefault();
+    axios.post('/api/jobs', {
+      data: {
+        position: this.props.job.jobTitle,
+        company: this.props.job.company,
+        location: this.props.job.location,
+        job_url: this.props.job.detailUrl,
+        post_date: this.props.job.date,
+      },
+    })
+      .then((data) => {
+        console.log('JOB SAVED', data);
+      });
+  }
+
   render() {
     return (
       <div className="mui--divider-bottom">
@@ -33,11 +50,17 @@ class JobListEntry extends Component {
           <h3>{this.props.job.jobTitle}</h3>
           <p>{this.props.job.company}: {this.props.job.location}</p>
         </a>
+        <button
+          className="mui-btn mui-btn--raised mui-btn--primary"
+          onClick={e => this.saveJob(e)}
+        >Save Job
+        </button>
       </div>
     );
   }
 }
 
+const mapStateToProps = state => ({ user: state.user });
 
 const mapDispatchToProps = dispatch => ({
   selectJob(job) {
@@ -48,4 +71,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(null, mapDispatchToProps)(JobListEntry);
+export default connect(mapDispatchToProps, mapDispatchToProps)(JobListEntry);

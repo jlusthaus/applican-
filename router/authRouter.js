@@ -1,8 +1,6 @@
 const authRouter = require('express').Router();
 const passport = require('passport');
 
-
-
 // Google oauth route
 authRouter.get('/google',
   passport.authenticate('google', { prompt: 'consent', scope: ['profile', 'email'] }));
@@ -17,13 +15,24 @@ authRouter.get('/google/callback',
 );
 
 authRouter.get('/checkAuth', (req, res) => {
+  console.log('this is authenticated', req.isAuthenticated());
   res.status(200).json({
     status: req.isAuthenticated() });
 });
 
+authRouter.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      res.sendStatus(500);
+    }
+    req.logout();
+    res.redirect('/');
+  });
+});
+
 // authRouter.get('/success', (req, res) => {
 //  res.status(202).send('login success')
-// }) // this runs super slow as a success redirect. 
+// }) // this runs super slow as a success redirect.
 
 
 module.exports = authRouter;

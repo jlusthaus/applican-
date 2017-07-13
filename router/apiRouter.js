@@ -22,12 +22,11 @@ router.post('/search', (req, res) => {
 });
 
 router.post('/dice', (req, res) => {
-  console.log('this is req body', req.body.url);
   const stream = xR(req.body.url, '#jobdescSec').stream();
   stream.pipe(res);
-  console.log('awefa', res);
 });
 
+router.post('/jobs', isLoggedIn, controllers.addJobtoUser);
 router.get('/user', isLoggedIn, controllers.getUserJobs);
 router.put('/jobs/:id', isLoggedIn, controllers.updateJobStatus);
 router.delete('/jobs/:id', isLoggedIn, controllers.deleteJob);

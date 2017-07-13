@@ -6,16 +6,32 @@ const SavedJobs = db.define('SavedJobs', {
   company: {
     type: Sequelize.STRING,
   },
-  contact_name: {
+  job_url: {
     type: Sequelize.STRING,
-  },
-  status: {
-    type: Sequelize.INTEGER,
   },
   position: {
     type: Sequelize.STRING,
   },
+  location: {
+    type: Sequelize.STRING,
+  },
+  status: {
+    type: Sequelize.INTEGER,
+    defaultValue: -1,
+  },
+  post_date: {
+    type: Sequelize.DATE,
+  },
+  created_at: {
+    type: Sequelize.DATE,
+  },
+  updated_at: {
+    type: Sequelize.DATE,
+  },
   applied_date: {
+    type: Sequelize.DATE,
+  },
+  closed_date: {
     type: Sequelize.DATE,
   },
   notes: {

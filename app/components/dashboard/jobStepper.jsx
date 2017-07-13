@@ -1,5 +1,5 @@
 import React from 'react';
-import Stepper from 'react-stepper-horizontal';
+import Stepper from './horizontalStepper/stepper';
 
 const stepsTitles = [{ title: 'Start' }, { title: 'Application' }, { title: 'Submit' }, { title: 'Interview' }, { title: 'Offer' }];
 
