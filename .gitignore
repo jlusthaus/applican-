@@ -62,5 +62,18 @@ db/config.keys.js
 
 #webpack bundle
 public/bundle.js
-public.bundle.js.map
+public/bundle.js.map
 
+#fonts & icons
+public/*.svg
+public/*.ttf
+public/*.eot
+
+# Private Keys
+/private
+
+public/674f50d287a8c48dc19ba404d20fe713.eot
+public/b06871f281fee6b241d60582ae9369b9.ttf
+public/bundle.js.map
+public/main.bundle.css.map
+public/main.bundle.css
