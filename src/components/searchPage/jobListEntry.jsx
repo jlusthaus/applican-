@@ -29,7 +29,7 @@ class JobListEntry extends Component {
 
   saveJob(e) {
     if (!this.props.user) {
-      this.props.history.push('/login');
+      this.props.history.push('/');
       return;
     }
     axios.post('/api/jobs', {

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addContactApi } from '../../actions/jobActions';
 
- class AddContact extends React.Component {
+class AddContact extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ({  name: 'name', position: 'position', Email: 'email', FollowUp: new Date() });
-    this.jobId = -1
+    this.state = ({ name: 'name', position: 'position', Email: 'email', FollowUp: new Date() });
+    this.jobId = -1;
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handlePositionChange = this.handlePositionChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -31,24 +30,24 @@ import { addContactApi } from '../../actions/jobActions';
     return (
       <div>
         <form onSubmit={(e) => {
-          e.preventDefault();
-            this.props.addContact(this.state.name, this.state.position, this.state.Email, this.state.FollowUp, this.props.jobId);
-          }}
+          e.preventDefault()
+          this.props.addContact(this.state.name, this.state.position, this.state.Email, this.state.FollowUp, this.props.jobId);
+        }}
         >
-          <input type="text" name="name" value={this.state.name} onChange={this.handleNameChange} />
-          <input type="text" name="position" value={this.state.position} onChange={this.handlePositionChange} />
-          <input type="text" name="Email" value={this.state.Email} onChange={this.handleEmailChange} />
-          <input type="date" name="FollowUp" value={this.state.FollowUp} onChange={this.handleFollowUpChange} />
+          <input type="text" name="name" placeholder={this.state.name} onChange={this.handleNameChange} />
+          <input type="text" name="position" placeholder={this.state.position} onChange={this.handlePositionChange} />
+          <input type="text" name="Email" placeholder={this.state.Email} onChange={this.handleEmailChange} />
+          <input type="date" name="FollowUp" placeholder={this.state.FollowUp} onChange={this.handleFollowUpChange} />
           <input type="submit" />
         </form>
       </div>
-    )
+    );
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  addContact(name, position, Email, FollowUp, id) {
-    dispatch(addContactApi(name, position, Email, FollowUp, id));
+  addContact(name, position, Email, FollowUp, jobId) {
+    dispatch(addContactApi(name, position, Email, FollowUp, jobId));
   },
 });
 

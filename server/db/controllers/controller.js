@@ -62,6 +62,7 @@ exports.addJobtoUser = (req, res) => {
     },
   })
     .then((data) => {
+      console.log(data);
       res.json(data);
     })
     .catch(err => res.status(400).send(err));
@@ -72,13 +73,11 @@ exports.addContact = (req, res) => {
   const position = req.body.position || null;
   const Email = req.body.Email || null;
   const FollowUp = req.body.FollowUp || null;
-  const job_id = req.body.id || null;
+  const job_id = req.body.jobId || null;
   Contacts.create({ name, position, Email, FollowUp, job_id })
     .then((contact) => {
       console.log('created contact:', contact);
-    })
-    .then(() => {
-      res.status(200).send();
+      res.status(200).send(contact.dataValues);
     })
     .catch((err) => {
       res.status(400).send(err);
@@ -99,50 +98,15 @@ exports.removeContact = (req, res) => {
 };
 
 exports.getContacts = (req, res) => {
-  const userId = req.user.id;
-
-  // Contacts.findAll({
-  //   where: { user_id: userId },
-  //   includes: [{
-  //     model: Join,
-  //     through: {
-  //       attributes: ['company'],
-  //     },
-  //   }],
-  // })
-  //   .then((data) => {
-  //     console.log('data is', data);
-  //   });
-
-  savedJobs.findAll({ where: { user_id: userId } })
-    .then((jobs) => {
-      const myJobs = [];
-      const companyName = [];
-      jobs.forEach((el) => {
-        companyName.push([el.dataValues.id, el.dataValues.company]);
-        myJobs.push(el.dataValues.id);
-      });
-      // Contacts.findAll({ where: { job_id: myJobs } })
-
-      Contacts.findAll({
-        where: { job_id: myJobs },
-        includes: [savedJobs],
-      })
-
-      // Contacts.findAll({ includes: [{
-      //   model: savedJobs,
-      //   through: {
-      //     attributes: ['company'],
-      //     where: { SavedJobsId: myJobs },
-      //   },
-      // }] })
-        .then((contacts) => {
-          console.log('contacts is', contacts);
-          res.status(200).send(contacts);
-        })
-        .catch((err) => {
-          res.status(400).send(err);
-        });
+  const jobId = req.params.id;
+  Contacts.findAll({
+    where: { job_id: jobId },
+  })
+    .then((contacts) => {
+      res.status(200).send(contacts);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
     });
 };
 

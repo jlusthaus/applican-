@@ -35,7 +35,7 @@ const SavedJobs = db.define('SavedJobs', {
     type: Sequelize.DATE,
   },
   cover_letter_key: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
   },
 });
 

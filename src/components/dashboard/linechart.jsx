@@ -14,7 +14,6 @@ const LineChart = (props) => {
     acc.push({ x: new Date(curr), y: values[idx] });
     return acc;
   }, []);
-  console.log(data);
   return (
     <VictoryChart
       scale={{ x: 'time' }}

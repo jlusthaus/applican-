@@ -1,18 +1,15 @@
 import React from 'react';
 import axios from 'axios';
-import Contacts from './ContactsListEntry';
+import { connect } from 'react-redux';
+import MDDelete from 'react-icons/md/delete';
+import { removeContactApi, fetchContactsApi } from '../../actions/actions';
 
-export default class ContactInfo extends React.Component {
+export class ContactInfo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { contactList: [] };
   }
   componentDidMount() {
-    axios.get('/api/contacts')
-      .then((contactList) => {
-        this.setState({ contactList });
-        console.log(this.state.contactList.data) // array
-      });
+    this.props.fetchContacts(this.props.jobId);
   }
 
   render() {
@@ -25,22 +22,39 @@ export default class ContactInfo extends React.Component {
               <th style={{ border: '1px solid' }}>Position</th>
               <th style={{ border: '1px solid' }}>Email</th>
               <th style={{ border: '1px solid' }}>FollowUp Date</th>
+              <th style={{ border: '1px solid' }}>Remove</th>
             </tr>
           </thead>
           <tbody style={{ border: '1px solid' }}>
-            { Array.isArray(this.state.contactList.data) ? this.state.contactList.data.map((el) => {
+            { Array.isArray(this.props.contacts) && this.props.contacts.map((el) => {
               return (
-                <tr style={{ border: '1px solid' }}>
+                <tr key={el.id} style={{ border: '1px solid' }}>
                   <td style={{ border: '1px solid' }}>{el.name}</td>
                   <td style={{ border: '1px solid' }}>{el.position}</td>
                   <td style={{ border: '1px solid' }}>{el.Email}</td>
-                  <td style={{ border: '1px solid' }}>{el.FollowUp}</td>
+                  <td style={{ border: '1px solid' }}>{el.FollowUp.toString()}</td>
+                  <td>
+                    <button onClick={() => this.props.removeContactApi(el.id)}>
+                      <MDDelete size={15} />
+                    </button>
+                  </td>
                 </tr>
               );
-            }) : 'no contacts' }
+            })}
           </tbody>
         </table>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({ isUserAuth: state.user, contacts: state.contacts });
+const mapDispatchToProps = dispatch => ({
+  fetchContacts(id) {
+    dispatch(fetchContactsApi(id));
+  },
+  removeContactApi(id) {
+    dispatch(removeContactApi(id));
+  },
+});
+export default connect(mapStateToProps, mapDispatchToProps)(ContactInfo);

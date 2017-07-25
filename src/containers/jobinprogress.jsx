@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Header, Icon } from 'semantic-ui-react';
-import { updateJobStatusAPI, deleteJobAPI, fetchUserNotes } from '../actions/actions';
+import { updateJobStatusAPI, deleteJobAPI, fetchUserNotes, addContactApi } from '../actions/actions';
 import JobStepper from '../components/shared/jobStepper/jobStepper';
-import Contacts from '../components/jobInProgress/contacts';
 import Notes from '../components/jobInProgress/notes';
 import SavedCoverLetter from '../components/jobInProgress/savedCoverLetter';
+import ContactInfo from '../components/jobInProgress/ContactInfo';
+import AddContact from '../components/jobInProgress/AddContact';
 
 const JobInProgress = props => (
   <container>
@@ -27,7 +28,12 @@ const JobInProgress = props => (
     </div>
     <div>
       <h3>Contacts</h3>
-      <Contacts />
+      <table>
+        <td width={50}>
+          <AddContact jobId={props.job.id}/>
+        </td>
+      </table>
+      <ContactInfo jobId={props.job.id} />
     </div>
   </container>
 );
@@ -45,6 +51,9 @@ const mapDispatchToProps = dispatch => ({
   },
   deleteJob(job) {
     dispatch(deleteJobAPI(job));
+  },
+  addContact(name, position, Email, FollowUp, id) {
+    dispatch(addContactApi(name, position, Email, FollowUp, id));
   },
 });
 

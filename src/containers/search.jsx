@@ -6,6 +6,7 @@ import JobSearch from '../components/shared/jobSearch';
 const Search = props => (
   <div>
     <JobSearch history={props.history} />
+    <br /><br /><br />
     <div className="mui-row">
       <div className="mui-col-md-5 mui-col-md-offset-1">
         <JobList history={props.history}/>

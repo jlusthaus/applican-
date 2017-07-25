@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { UPDATE_JOB_LISTINGS, TOGGLE_JOB_LISTING_STATUS, DELETE_JOB, SET_USER_JOBS, SET_SORT_FILTER, ADD_CONTACT } from './actionTypes';
+import { UPDATE_JOB_LISTINGS, TOGGLE_JOB_LISTING_STATUS, DELETE_JOB, SET_USER_JOBS, SET_SORT_FILTER } from './actionTypes';
 
 export function updateJobListings(jobListings) {
   return { type: UPDATE_JOB_LISTINGS, payload: jobListings };
@@ -36,7 +36,8 @@ export function fetchUserJobs() {
   return (dispatch) => {
     axios.get('/api/user/')
       .then((res) => {
-        return dispatch(setUserJobs(res.data));
+        const data = (Array.isArray(res.data)) ? res.data : [];
+        return dispatch(setUserJobs(data));
       })
       .catch(err => console.log(err));
   };

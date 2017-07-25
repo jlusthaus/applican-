@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const config = require('./config.js');
-const AWSpwd = require('../../private/config.keys.js');
+const AWSpwd = require('../../private/config.keys.js').AWSpwd;
 
 const options = process.env.databaseOptions || config.databaseOptions;
 

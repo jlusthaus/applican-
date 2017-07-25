@@ -2,6 +2,7 @@
 
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('../db/models/User');
+const GoogleKey = require('../../private/config.keys.js').google;
 
 
 module.exports = function (passport) {
@@ -21,8 +22,8 @@ module.exports = function (passport) {
 
   // Google oauth setup
   passport.use(new GoogleStrategy({
-    clientID: '748574587907-3stt2ub1q9tnaqh7rci4sort4bl5cqtb.apps.googleusercontent.com',
-    clientSecret: 'c5t-iX_qW1DVbuyNMtXgGRCy',
+    clientID: GoogleKey.clientID,
+    clientSecret: GoogleKey.clientSecret,
     callbackURL: 'http://localhost:2245/auth/google/callback',
   },
   (accessToken, refreshToken, profile, done) => {

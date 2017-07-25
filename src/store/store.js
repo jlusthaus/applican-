@@ -2,9 +2,8 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import rootReducer from '../reducers/rootReducer';
 
-
 /* eslint-disable */
-const persistedState = localStorage.getItem('applican_store') ? JSON.parse(localStorage.getItem('reduxState')) : {};
+const persistedState = localStorage.getItem('applican_store') ? JSON.parse(localStorage.getItem('applican_store')) : {};
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   rootReducer,
