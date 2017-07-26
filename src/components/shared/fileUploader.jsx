@@ -25,7 +25,6 @@ class FileUploader extends Component {
     };
     this.setState({ file: '' });
     return axios.post(endpointUrl, formData, config).then(data => {
-      console.log(data);
       if (this.props.onSubmit) {
         this.props.onSubmit ();
       }

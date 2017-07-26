@@ -7,9 +7,14 @@ import { selectJobDetails, setJobDesc } from '../../actions/actions';
 class JobListEntry extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      confirmSave: false,
+      style: {color: 'blue', fontSize: '15px'}
+    }; 
 
     this.selectJobHandle = this.selectJobHandle.bind(this);
     this.saveJob = this.saveJob.bind(this);
+
   }
 
   selectJobHandle(e) {
@@ -42,7 +47,7 @@ class JobListEntry extends Component {
       },
     })
       .then((data) => {
-        console.log('JOB SAVED', data);
+        this.setState({ confirmSave: true }); 
       });
   }
 
@@ -57,7 +62,7 @@ class JobListEntry extends Component {
           className="mui-btn mui-btn--raised mui-btn--primary"
           onClick={e => this.saveJob(e)}
         >Save Job
-        </button>
+        </button> {this.state.confirmSave ? <a style={this.state.style}> Job Saved!</a> : null}
       </div>
     );
   }

@@ -62,7 +62,6 @@ exports.addJobtoUser = (req, res) => {
     },
   })
     .then((data) => {
-      console.log(data);
       res.json(data);
     })
     .catch(err => res.status(400).send(err));
@@ -76,7 +75,6 @@ exports.addContact = (req, res) => {
   const job_id = req.body.jobId || null;
   Contacts.create({ name, position, Email, FollowUp, job_id })
     .then((contact) => {
-      console.log('created contact:', contact);
       res.status(200).send(contact.dataValues);
     })
     .catch((err) => {
