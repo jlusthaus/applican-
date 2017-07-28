@@ -56,3 +56,4 @@ View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
 ## Contributing
 
 See [CONTRIBUTING.md](_CONTRIBUTING.md) for contribution guidelines.
+[![Stories in Ready](https://badge.waffle.io/HashtableHippos/applican-.png?label=ready&title=Ready)](https://waffle.io/HashtableHippos/applican-?utm_source=badge)
