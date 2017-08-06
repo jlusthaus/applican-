@@ -1,3 +1,6 @@
+require('dotenv').config();
+
+
 const express = require('express');
 const path = require('path');
 const Session = require('express-session');
@@ -12,13 +15,15 @@ const passport = require('passport');
 const app = express();
 
 
-app.use(express.static(path.join(__dirname, '../public/')));
+app.use('/static', express.static(path.join(__dirname, '../public/')));
 
 
 // PASSPORT SETUP
 require('./router/passport.js')(passport);
 
-app.use(Session({ secret: 'hippos', resave: true, saveUninitialized: true }));
+app.use(Session({ secret: process.env.EXPRESS_SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true }));
 app.use(cookieParser);
 app.use(bodyParser.json());
 app.use(fileUpload({ fileSize: 5 * 1024 * 1024 }));

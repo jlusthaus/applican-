@@ -8,8 +8,7 @@ import LineChart from '../components/dashboard/linechart';
 import PieChart from '../components/dashboard/piechart';
 import { updateJobStatusAPI, deleteJobAPI, fetchUserJobs, setSortFilter } from '../actions/actions';
 import { getSortedJobs } from '../selectors/jobs';
-import Dropdown from 'muicss/lib/react/dropdown';
-import DropdownItem from 'muicss/lib/react/dropdown-item';
+
 
 class Dashboard extends Component {
   constructor(props) {

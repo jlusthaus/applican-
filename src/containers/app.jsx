@@ -1,7 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Route } from 'react-router-dom';
-import 'semantic-ui-css/semantic.min.css';
 import Landing from './landing';
 import NavBar from './navbar';
 import About from './about';

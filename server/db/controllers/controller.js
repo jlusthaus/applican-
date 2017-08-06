@@ -155,7 +155,6 @@ exports.addNotes = (req, res) => {
     });
 };
 
-
 exports.retrieveNotes = (req, res) => {
   Notes.findAll({})
     .then((notes) => {

@@ -19,5 +19,5 @@ deploy:
   env: Applican-env
   bucket_name: elasticbeanstalk-us-east-1-968754205087
   on:
-    repo: HashtableHippos/applican-
+    repo: jlusthaus/applican-
     branch: dev

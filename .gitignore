@@ -69,6 +69,9 @@ public/*.svg
 public/*.ttf
 public/*.eot
 
+# environment
+.env
+
 # Private Keys
 /private
 
