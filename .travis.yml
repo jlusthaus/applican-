@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+- '6'
+env:
+  matrix:
+  - TRAVIS_NODE_VERSION="6.3"
+install:
+- npm install
+cache:
+  directories:
+  - node_modules
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: AKIAIGUNMDCZ7ANYO6ZA
+  secret_access_key:
+    secure: mg++GbYZ/Rqub+7NolXHUPlopB4EmTCf7LiCdJy1ceSnFe26I4X08nCEBoyQVGrDdx10zGXGzRStCd3nurhR4eQ74fjV7z+zaNQcou83QpClUgQmfMYi7UerzOy4AJ+eFDglhDRBR8eiaeD36uiyTvsOTrJ0iT93Vl89JtBtzZCzR6CkagEeu7+tueGuWl/bxrAUJ//+Az+Ul4VsUav3+P6+0snJTRUxQIwXChpiAiZnG7+gejmIFRu4WDLub1ijy8A3taej/K7etFmh6Tw1WQM79Vpry71xUqzFa5Wer8zfzrkt2ue85lDwOhqH1WFTOlYSe9seNYlEj96rgu47v60SFAqfsdIUWKOc+UHZ76q+pOxzUGdYPjIhbPvMdoDdePpDUHZi25M6aFT/I8tXr/UoFV6hyrPxWV5Zgu8K2xWuo2urmjBVWg6JKbZJrBpLXujiuYPiWENU6IsHgd0bjOwMacX7BS2yUkbvzeTst9XJdKX+27SvsYTAUCOguWs44Eej58gfs5PMUjA0YUc1PTDFCf5N7lSk27Mk6Y8o55NgZzdjbJwhDnKQdeTy0tXQTsOao+OIP1qALXDWC8rdD3N1l47Z/AspIvoD/Ff7ZzUlbRLz921SCENLv0aWV1j5HHq6I9fkIeD67WDAkVqP9GEcPfmUqUBWBOntV7vubos=
+  region: us-east-1
+  app: Applican
+  env: Applican-env
+  bucket_name: elasticbeanstalk-us-east-1-968754205087
+  on:
+    repo: HashtableHippos/applican-
+    branch: dev
