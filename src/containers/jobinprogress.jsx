@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Header, Icon } from 'semantic-ui-react';
 import { updateJobStatusAPI, deleteJobAPI, fetchUserNotes, addContactApi } from '../actions/actions';
 import JobStepper from '../components/shared/jobStepper/jobStepper';
 import Notes from '../components/jobInProgress/notes';
@@ -19,13 +18,8 @@ class JobInProgress extends Component {
     return (
       <container>
         <div>
-          <Header as="h2" icon textAlign="center">
-            <i className="handshake icon" />
-            <Header.Content>
-              <h2>{this.props.job.position}</h2>
-              <h2><i>{this.props.job.company}</i></h2>
-            </Header.Content>
-          </Header>
+          <h2>{this.props.job.position}</h2>
+          <h2><i>{this.props.job.company}</i></h2>
         </div>
         <div>
           <JobStepper job={this.props.job} handleProgressClick={this.props.toggleJobStatus} />
