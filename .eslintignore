@@ -1,0 +1,4 @@
+node-modules
+public
+db/config.js
+_test_/
